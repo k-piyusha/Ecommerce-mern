@@ -4,6 +4,7 @@ const port=8080
 const bodyParser=require('body-parser')
 const mongoose = require('mongoose');
 const path=require('path')
+const cors=require('cors')
 require('dotenv').config()
 
 mongoose.connect('mongodb+srv://root:root@cluster0.jafpl.mongodb.net/EcommerceDB?retryWrites=true&w=majority',
@@ -21,6 +22,7 @@ const categoryRoutes=require('./routes/category')
 const productRoutes=require('./routes/product')
 const cartRoutes=require('./routes/cart')
 
+app.use(cors())
 app.use(express.json())
 app.use('/public',express.static(path.join(__dirname,'uploads')))
 app.use('/api',authRoutes)
